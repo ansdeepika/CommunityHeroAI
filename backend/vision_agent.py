@@ -9,12 +9,11 @@ load_dotenv()
 
 api_key = os.getenv("GEMINI_API_KEY")
 
-if not api_key:
-    raise RuntimeError("GEMINI_API_KEY not found")
-
-genai.configure(api_key=api_key)
-
-model = genai.GenerativeModel("gemini-2.5-flash")
+if api_key:
+    genai.configure(api_key=api_key)
+    model = genai.GenerativeModel("gemini-2.5-flash")
+else:
+    model = None
 
 
 def clean_json(text):
@@ -61,6 +60,17 @@ Format:
 }}
 """
 
+    if not model:
+        return """
+{
+  "issue_type":"Other",
+  "severity":"Low",
+  "priority_score":0,
+  "department":"Unknown",
+  "description":"GEMINI_API_KEY not configured"
+}
+"""
+
     try:
         response = model.generate_content(prompt)
         return clean_json(response.text)
@@ -80,6 +90,17 @@ Format:
 
 
 def analyze_image(image_path):
+    if not model:
+        return """
+    {
+        "issue_type":"Other",
+        "severity":"Low",
+        "priority_score":0,
+        "department":"Unknown",
+        "description":"GEMINI_API_KEY not configured"
+        }
+"""
+
     try:
         image = Image.open(image_path)
 

@@ -12,11 +12,18 @@ from reportlab.platypus import (
 )
 from reportlab.lib.styles import getSampleStyleSheet
 
-from vision_agent import (
-    analyze_issue,
-    analyze_image,
-    generate_complaint,
-)
+try:
+    from .vision_agent import (
+        analyze_issue,
+        analyze_image,
+        generate_complaint,
+    )
+except ImportError:  # pragma: no cover - supports direct script execution
+    from vision_agent import (
+        analyze_issue,
+        analyze_image,
+        generate_complaint,
+    )
 
 app = FastAPI()
 
@@ -179,18 +186,6 @@ def resolve_complaint(complaint_id: str):
     for complaint in complaints_db:
         if complaint["complaint_id"] == complaint_id:
             complaint["status"] = "Resolved"
-
-    return {
-        "message": "Complaint marked as resolved"
-    }
-@app.post("/admin/resolve/{complaint_id}")
-def resolve_complaint(complaint_id: str):
-
-    for complaint in complaints_db:
-
-        if complaint["complaint_id"] == complaint_id:
-            complaint["status"] = "Resolved"
-
             return {
                 "message": "Complaint Resolved"
             }
