@@ -5,6 +5,7 @@
 # Python
 __pycache__/
 *.pyc
+backend/complaint.pdf
 
 # Node
 node_modules/

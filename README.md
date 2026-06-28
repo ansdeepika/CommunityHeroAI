@@ -1,72 +1,69 @@
 # Community Hero AI
-## Problem Statement
-Citizens often face difficulties reporting civic infrastructure issues such as potholes, garbage dumping, water leakage, drainage problems, and streetlight failures.
-Complaints are frequently unstructured, delayed, or routed to the wrong department, resulting in slow resolution and poor citizen experience.
----
-## Solution
-Community Hero AI is an AI-powered civic issue reporting platform that helps citizens report problems using text descriptions or images.
-The platform automatically:
-* Detects civic issues using AI
-* Classifies issue type
-* Calculates severity and priority
-* Routes complaints to the correct department
-* Generates formal complaint letters
-* Exports complaints as PDF documents
-* Tracks complaints through an admin dashboard
----
-## Features
-### Citizen Portal
-* Text-based issue analysis
-* Image-based issue analysis
-* AI-generated complaint letters
-* PDF complaint download
-* GPS location capture
-* Priority score generation
-* Unique complaint IDs
-### Admin Dashboard
-* View all complaints
-* Track complaint status
-* Resolve complaints
-* Monitor pending issues
-* Real-time complaint updates
----
-## Tech Stack
-### Frontend
-* Next.js
-* React
-* Tailwind CSS
-### Backend
-* FastAPI
-* Python
-### AI
-* Google Gemini AI
-* Gemini Vision
-### Additional Libraries
-* ReportLab
-* Pillow
----
-## Workflow
-Citizen Report
-↓
-AI Analysis
-↓
-Issue Classification
-↓
-Department Assignment
-↓
-Complaint Generation
-↓
-Admin Dashboard
-↓
-Issue Resolution
----
-## Future Scope
-* Department Analytics
-* Email Notifications
-* Complaint History
-* Mobile Application
-* Real-time Government Integration
----
-## Team
-Community Hero AI
-Hackathon Project 2026
+
+Community Hero AI is an AI-powered civic issue reporting platform for citizens to file infrastructure complaints using text or images. The system classifies issues, generates formal complaint letters, and includes an admin dashboard for tracking complaint status.
+
+## Quick Start
+
+### 1. Clone the repo
+```bash
+git clone https://github.com/ansdeepika/CommunityHeroAI.git
+cd CommunityHeroAI
+```
+
+### 2. Backend setup
+```bash
+cd backend
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+```
+
+### 3. Configure backend
+Create a file named `backend/.env` with:
+```bash
+GEMINI_API_KEY=your_api_key_here
+```
+If no Gemini API key is available, the backend will still run and return fallback values for AI analysis.
+
+### 4. Run backend
+```bash
+python -m uvicorn main:app --host 127.0.0.1 --port 8000
+```
+
+### 5. Frontend setup
+Open a new terminal and run:
+```bash
+cd frontend
+npm install
+npm run dev -- --hostname 127.0.0.1 --port 3000
+```
+
+### 6. Open the app
+- User app: `http://127.0.0.1:3000`
+- Admin dashboard: `http://127.0.0.1:3000/admin`
+- Backend health: `http://127.0.0.1:8000`
+
+## Project structure
+- `backend/`: FastAPI backend and complaint generation logic
+- `frontend/`: Next.js frontend application
+- `backend/vision_agent.py`: AI issue analysis and complaint generation
+- `frontend/src/app/admin/page.js`: Admin dashboard UI
+
+## Notes
+- `.venv` is excluded from git, so each user must create it locally.
+- `backend/.env` is not included in git.
+- The frontend calls backend APIs at `http://localhost:8000`.
+- Run backend and frontend in separate terminals.
+
+## Troubleshooting
+- If the frontend cannot reach the backend, verify `http://127.0.0.1:8000` is running.
+- If Gemini API errors occur, confirm `backend/.env` contains a valid `GEMINI_API_KEY`.
+- The backend returns fallback values when a Gemini key is not configured.
+
+## Future scope
+- Department analytics
+- Email notifications
+- Complaint history tracking
+- Mobile app support
+- Real-time government integration
