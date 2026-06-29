@@ -13,7 +13,7 @@ export default function AdminPage() {
   const fetchComplaints = async () => {
     try {
       const response = await fetch(
-        "http://localhost:8000/admin/complaints"
+        "https://communityhero-backend-787820491307.asia-south1.run.app/admin/complaints"
       );
 
       const result = await response.json();
@@ -37,7 +37,7 @@ export default function AdminPage() {
   const resolveComplaint = async (id) => {
     try {
       await fetch(
-        `http://localhost:8000/admin/resolve/${id}`,
+        `https://communityhero-backend-787820491307.asia-south1.run.app/admin/resolve/${id}`,
         {
           method: "POST",
         }

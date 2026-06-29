@@ -47,7 +47,7 @@ export default function Home() {
 
     try {
       const response = await fetch(
-        `http://localhost:8000/analyze?description=${encodeURIComponent(
+        `https://communityhero-backend-787820491307.asia-south1.run.app/analyze?description=${encodeURIComponent(
           description
         )}`
       );
@@ -77,7 +77,7 @@ export default function Home() {
       formData.append("file", image);
 
       const response = await fetch(
-        "http://localhost:8000/analyze-image",
+        "https://communityhero-backend-787820491307.asia-south1.run.app/analyze-image",
         {
           method: "POST",
           body: formData,
@@ -103,7 +103,7 @@ export default function Home() {
 
     try {
       const response = await fetch(
-        "http://localhost:8000/generate-complaint",
+        "https://communityhero-backend-787820491307.asia-south1.run.app/generate-complaint",
         {
           method: "POST",
           headers: {
@@ -157,7 +157,7 @@ if (data.complaint_id) {
 
     try {
       const response = await fetch(
-        "http://localhost:8000/download-complaint",
+        "https://communityhero-backend-787820491307.asia-south1.run.app/download-complaint",
         {
           method: "POST",
           headers: {
